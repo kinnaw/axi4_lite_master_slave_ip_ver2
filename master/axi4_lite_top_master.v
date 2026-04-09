@@ -49,3 +49,27 @@ module axi4_lite_top_master #(
     output wire [DATA_WIDTH-1:0]      data_out,
     output wire [1:0]                 rresp_out
 );
+
+ axi4_lite_master #(
+    .DATA_WIDTH (DATA_WIDTH),
+    .ADDR_WIDTH (ADDR_WIDTH)
+) u_master (
+    .ACLK       (ACLK),       .ARESETn    (ARESETn),
+    .AWADDR     (AWADDR),     .AWPROT     (AWPROT),
+    .AWVALID    (AWVALID),    .AWREADY    (AWREADY),
+    .WDATA      (WDATA),      .WSTRB      (WSTRB),
+    .WVALID     (WVALID),     .WREADY     (WREADY),
+    .BRESP      (BRESP),      .BVALID     (BVALID),     .BREADY     (BREADY),
+    .ARADDR     (ARADDR),     .ARPROT     (ARPROT),
+    .ARVALID    (ARVALID),    .ARREADY    (ARREADY),
+    .RDATA      (RDATA),      .RRESP      (RRESP),
+    .RVALID     (RVALID),     .RREADY     (RREADY),
+    .wr_en      (wr_en),      .awaddr_in  (awaddr_in),
+    .wdata_in   (wdata_in),   .wstrb_in   (wstrb_in),
+    .wr_prot    (wr_prot),    .bresp_out  (bresp_out),
+    .rd_en      (rd_en),      .araddr_in  (araddr_in),
+    .rd_prot    (rd_prot),    .data_out   (data_out),
+    .rresp_out  (rresp_out)
+);
+ 
+endmodule
